@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "lkaZ4+sxfBqLM2yJ6E2WfZStSIypZWx0BE5BKzGb8c7crJ3Gql3z8xZJkpTfqJJrORtSZqfa8JK9ivNbMUXf5w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Wellyngton\\source\\repos\\Order\\Order.Infra\\Order.Infra.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

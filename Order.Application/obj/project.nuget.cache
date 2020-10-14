@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "wHaRiO3+XHXe2t2cqUCygAqRqIdKB67On8xug8S2FhQr7wVCB/p91d/Pclk2TQ3SQk1/admxdYuyyCf7u9B3ig==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Wellyngton\\source\\repos\\Order\\Order.Application\\Order.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

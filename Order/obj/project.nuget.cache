@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "MgUgrRTKkF7XjGxZwKZaEuLC12ouLHP9QkdA5+DyDciikG2iJA3uZglqwn1PqfgGHYuKZRZh7MeHN/s+Cs8LJQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Wellyngton\\source\\repos\\Order\\Order\\Order.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}

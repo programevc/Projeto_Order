@@ -1,0 +1,9 @@
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.csprojAssemblyReference.cache
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.AssemblyInfoInputs.cache
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.AssemblyInfo.cs
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.RazorTargetAssemblyInfo.cache
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\staticwebassets\Order.StaticWebAssets.Manifest.cache
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\staticwebassets\Order.StaticWebAssets.xml
