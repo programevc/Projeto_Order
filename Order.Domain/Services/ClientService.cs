@@ -1,6 +1,8 @@
 ﻿using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
+using Order.Domain.Validations;
+using Order.Domain.Validations.Base;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,29 +16,38 @@ namespace Order.Domain.Services
         {
             _clientRepository = clientRepository;
         }
-        public Task CreateAsync(ClientModel client)
-        {
-            _clientRepository.CreateAsync(client);
 
+        async Task<Response> IClientService.CreateAsync(ClientModel client)
+        {
+            var response = new Response();
+
+            var validation = new ClientValidation();
+            var errors = validation.Validate(client).GetErrors();
+
+            if (errors.Report.Count > 0)
+                return errors;
+
+            await _clientRepository.CreateAsync(client);
+
+            return response;
+        }
+
+        Task<Response> IClientService.DeleteAsync(string clientId)
+        {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(string clientId)
+        Task<Response<ClientModel>> IClientService.GetByIdAsync(string clientId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ClientModel> GetByIdAsync(string clientId)
+        Task<Response<List<ClientModel>>> IClientService.ListByFiltersAsync(string clientId, string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ClientModel>> ListByFiltersAsync(string clientId = null, string name = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(ClientModel client)
+        Task<Response> IClientService.UpdateAsync(ClientModel client)
         {
             throw new NotImplementedException();
         }

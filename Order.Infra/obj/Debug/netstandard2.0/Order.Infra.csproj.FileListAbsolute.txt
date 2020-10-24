@@ -1,0 +1,8 @@
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\bin\Debug\netstandard2.0\Order.Infra.deps.json
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\bin\Debug\netstandard2.0\Order.Infra.dll
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\bin\Debug\netstandard2.0\Order.Infra.pdb
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\obj\Debug\netstandard2.0\Order.Infra.AssemblyInfoInputs.cache
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\obj\Debug\netstandard2.0\Order.Infra.AssemblyInfo.cs
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\obj\Debug\netstandard2.0\Order.Infra.csproj.CoreCompileInputs.cache
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\obj\Debug\netstandard2.0\Order.Infra.dll
+C:\Users\Wellyngton\source\repos\Order\Order.Infra\obj\Debug\netstandard2.0\Order.Infra.pdb

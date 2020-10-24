@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "J2sYDlfqyV+MynXIOVjR5SmHDTxV4D48+lurx5d8pLprGT2wEZr4kcUroLElzvX/fGTNs+B/hcRsXC3yB0PfVw==",
+  "dgSpecHash": "r+2Ndfgugyfi10v5SpoW9DcvmHSdJDzeLajE9udS7hhXwYczVbLxEyuRZxIvFnnpln9/2nNalZ4AHjXz7eOzpg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Wellyngton\\source\\repos\\Order\\Order.Domain\\Order.Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\fluentvalidation\\9.2.2\\fluentvalidation.9.2.2.nupkg.sha512",
     "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Wellyngton\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
