@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "4WI6zNJCJtWBXPMfPpShj4Gw+8YUTGNBQUd2b0rspXlxcwX1dxhSOnjLSi4ZjNnuHXE6uVycZj54UisOfqE/0Q==",
+  "dgSpecHash": "6Ku7fwWDCPWSjl6WpT5UabUmwlYQGMvceYtQVLvmlitBmupiPbhO91JRvKCi7P+Q7RC8Bix14wkRmH+ix/wa0g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Wellyngton\\source\\repos\\Order\\Order.Application\\Order.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Wellyngton\\.nuget\\packages\\fluentvalidation\\9.2.2\\fluentvalidation.9.2.2.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Wellyngton\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

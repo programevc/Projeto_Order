@@ -1,11 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "+FWOlXlDdgz+4A0NqFJhFMQOUuxYekgaW/mZ+Q0Tfn5EExfroYXjcxL7x4akMZO0F1IkdIs4BdGHJ8HqGpO7ug==",
+  "dgSpecHash": "twctQF9iDsa3VCYM8tuu5qIqhoOmmbnvUozwvP+zG+ZTnltjI//7dK/5goLzv2JOV7ha/NrnsBqj6t7j1taPaA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Wellyngton\\source\\repos\\Order\\Order\\Order.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\Wellyngton\\.nuget\\packages\\fluentvalidation\\9.2.2\\fluentvalidation.9.2.2.nupkg.sha512",
-    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.0.0\\microsoft.extensions.dependencyinjection.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.extensions.options\\3.0.0\\microsoft.extensions.options.3.0.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
+    "C:\\Users\\Wellyngton\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }
