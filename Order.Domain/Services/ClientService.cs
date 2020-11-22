@@ -16,7 +16,7 @@ namespace Order.Domain.Services
             _clientRepository = clientRepository;
         }
 
-        async Task<Response> IClientService.CreateAsync(ClientModel client)
+        public async Task<Response> CreateAsync(ClientModel client)
         {
             var response = new Response();
 
@@ -31,7 +31,7 @@ namespace Order.Domain.Services
             return response;
         }
 
-        async Task<Response> IClientService.DeleteAsync(string clientId)
+        public async Task<Response> DeleteAsync(string clientId)
         {
             var response = new Response();
 
@@ -48,7 +48,7 @@ namespace Order.Domain.Services
             return response;
         }
 
-        async Task<Response<ClientModel>> IClientService.GetByIdAsync(string clientId)
+        public async Task<Response<ClientModel>> GetByIdAsync(string clientId)
         {
             var response = new Response<ClientModel>();
 
@@ -65,7 +65,7 @@ namespace Order.Domain.Services
             return response;
         }
 
-        async Task<Response<List<ClientModel>>> IClientService.ListByFiltersAsync(string clientId, string name)
+        public async Task<Response<List<ClientModel>>> ListByFiltersAsync(string clientId = null, string name = null)
         {
             var response = new Response<List<ClientModel>>();
 
@@ -86,7 +86,7 @@ namespace Order.Domain.Services
             return response;
         }
 
-        async Task<Response> IClientService.UpdateAsync(ClientModel client)
+        public async Task<Response> UpdateAsync(ClientModel client)
         {
             var response = new Response();
 

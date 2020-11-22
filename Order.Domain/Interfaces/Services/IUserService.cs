@@ -1,4 +1,5 @@
 ﻿using Order.Domain.Models;
+using Order.Domain.Validations.Base;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,11 +7,11 @@ namespace Order.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-        Task<bool> AutheticationAsync(UserModel user);
-        Task CreateAsync(UserModel user);
-        Task UpdateAsync(UserModel user);
-        Task DeleteAsync(string userId);
-        Task<UserModel> GetByIdAsync(string userId);
-        Task<List<UserModel>> ListByFilterAsync(string userId = null, string name = null);
+        Task<Response<bool>> AutheticationAsync(UserModel user);
+        Task<Response> CreateAsync(UserModel user);
+        Task<Response> UpdateAsync(UserModel user);
+        Task<Response> DeleteAsync(string userId);
+        Task<Response<UserModel>> GetByIdAsync(string userId);
+        Task<Response<List<UserModel>>> ListByFilterAsync(string userId = null, string name = null);
     }
 }

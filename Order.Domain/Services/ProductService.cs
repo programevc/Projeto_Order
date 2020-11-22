@@ -1,6 +1,8 @@
-﻿using Order.Domain.Interfaces.Services;
+﻿using Order.Domain.Interfaces.Repositories;
+using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
-using System;
+using Order.Domain.Validations;
+using Order.Domain.Validations.Base;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,29 +10,103 @@ namespace Order.Domain.Services
 {
     public class ProductService : IProductService
     {
-        public Task CreateAsync(ProductModel product)
+        private readonly IProductRepository _productRepository;
+        public ProductService(IProductRepository productRepository)
         {
-            throw new NotImplementedException();
+            _productRepository = productRepository;
+
+        }
+        public async Task<Response> CreateAsync(ProductModel product)
+        {
+            var response = new Response();
+
+            var validation = new ProductValidation();
+            var errors = validation.Validate(product).GetErrors();
+
+            if (errors.Report.Count > 0)
+                return errors;
+
+            await _productRepository.CreateAsync(product);
+
+            return response;
         }
 
-        public Task DeleteAsync(string productId)
+        public async Task<Response> DeleteAsync(string productId)
         {
-            throw new NotImplementedException();
+            var response = new Response();
+
+            var exists = await _productRepository.ExistsByIdAsync(productId);
+
+            if (!exists)
+            {
+                response.Report.Add(Report.Create($"product {productId} not exists!"));
+                return response;
+            }
+
+            await _productRepository.DeleteAsync(productId);
+
+            return response;
         }
 
-        public Task<ProductModel> GetByIdAsync(string productId)
+        public async Task<Response<ProductModel>> GetByIdAsync(string productId)
         {
-            throw new NotImplementedException();
+            var response = new Response<ProductModel>();
+
+            var exists = await _productRepository.ExistsByIdAsync(productId);
+
+            if (!exists)
+            {
+                response.Report.Add(Report.Create($"product {productId} not exists!"));
+                return response;
+            }
+
+            var data = await _productRepository.GetByIdAsync(productId);
+            response.Data = data;
+            return response;
         }
 
-        public Task<List<ProductModel>> ListByFilterAsync(string productId = null, string description = null)
+        public async  Task<Response<List<ProductModel>>> ListByFilterAsync(string productId = null, string description = null)
         {
-            throw new NotImplementedException();
+            var response = new Response<List<ProductModel>>();
+
+            if (!string.IsNullOrWhiteSpace(productId))
+            {
+                var exists = await _productRepository.ExistsByIdAsync(productId);
+
+                if (!exists)
+                {
+                    response.Report.Add(Report.Create($"product {productId} not exists!"));
+                    return response;
+                }
+            }
+
+            var data = await _productRepository.ListByFilterAsync(productId, description);
+            response.Data = data;
+
+            return response;
         }
 
-        public Task UpdateAsync(ProductModel product)
+        public async Task<Response> UpdateAsync(ProductModel product)
         {
-            throw new NotImplementedException();
+            var response = new Response();
+
+            var validation = new ProductValidation();
+            var errors = validation.Validate(product).GetErrors();
+
+            if (errors.Report.Count > 0)
+                return errors;
+
+            var exists = await _productRepository.ExistsByIdAsync(product.Id);
+
+            if (!exists)
+            {
+                response.Report.Add(Report.Create($"product {product.Id} not exists!"));
+                return response;
+            }
+
+            await _productRepository.UpdateAsync(product);
+
+            return response;
         }
     }
 }

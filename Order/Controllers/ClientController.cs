@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Order.Application.DataContract.Request.Client;
+using Order.Application.Interfacds;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Order.Application.DataContract.Request.Client;
-using Order.Application.Interfacds;
 
 namespace Order.Api.Controllers
 {
@@ -21,9 +20,14 @@ namespace Order.Api.Controllers
 
         // GET: api/<ClientController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult> Get([FromQuery] string clientid, [FromQuery] string name)
         {
-            return new string[] { "value1", "value2" };
+            var response = await _clientApplication.ListByFilterAsync(clientid, name);
+
+            if (response.Report.Any())
+                return UnprocessableEntity(response.Report);
+
+            return Ok(response);
         }
 
         // GET api/<ClientController>/5

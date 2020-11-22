@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Order.Application.DataContract.Request.Client;
+using Order.Application.DataContract.Response.Client;
 using Order.Application.Interfacds;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
@@ -24,6 +25,15 @@ namespace Order.Application.Applications
             var clientModel = _mapper.Map<ClientModel>(client);
 
             return await _clientService.CreateAsync(clientModel);
+        }
+
+        public async Task<Response<ClientResponse>> ListByFilterAsync(string clientId, string name)
+        {
+            var client = await _clientService.ListByFiltersAsync(clientId, name);
+
+            var response = _mapper.Map<ClientResponse>(client.Data);
+
+            return Response.OK(response);
         }
     }
 }

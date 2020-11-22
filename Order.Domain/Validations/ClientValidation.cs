@@ -7,6 +7,9 @@ namespace Order.Domain.Validations
     {
         public ClientValidation()
         {
+            ValidatorOptions.Global.CascadeMode = CascadeMode.Stop;
+
+
             RuleFor(x => x.Name)
                 .NotNull()
                 .NotEmpty()
