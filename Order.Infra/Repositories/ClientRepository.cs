@@ -2,12 +2,8 @@
 using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Repositories.DataConnector;
 using Order.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Order.Infra.Repositories
@@ -28,14 +24,57 @@ namespace Order.Infra.Repositories
                                       ,[CreatedAt]
                                   FROM[dbo].[Client]
                                   WHERE 1 = 1 ";
-        public Task CreateAsync(ClientModel client)
+        public async Task CreateAsync(ClientModel client)
         {
-            throw new NotImplementedException();
-        }
+            string sql = @"INSERT INTO [dbo].[Client]
+                                   ([Id]
+                                   ,[Name]
+                                   ,[Email]
+                                   ,[PhoneNumber]
+                                   ,[Adress]
+                                   ,[CreatedAt])
+                             VALUES
+                                   (@Id
+                                   ,@Name
+                                   ,@Email
+                                   ,@PhoneNumber
+                                   ,@Adress
+                                   ,@CreatedAt)";
 
-        public Task DeleteAsync(string clientId)
+            await _dbConnector.dbConnection.ExecuteAsync(sql, new
+            {
+                Id = client.Id,
+                Name = client.Name,
+                Email = client.Email,
+                PhoneNumber = client.PhoneNumber,
+                Adress = client.Adress,
+                CreatedAt = client.CreatedAt
+            }, _dbConnector.dbTransaction);
+
+        }
+        public async Task UpdateAsync(ClientModel client)
         {
-            throw new NotImplementedException();
+            string sql = @"UPDATE [dbo].[Client]
+                               SET [Name] = @Name
+                                  ,[Email] = @Email
+                                  ,[PhoneNumber] = @PhoneNumber
+                                  ,[Adress] = @Adress
+                             WHERE Id = @Id";
+
+            await _dbConnector.dbConnection.ExecuteAsync(sql, new
+            {
+                Id = client.Id,
+                Name = client.Name,
+                Email = client.Email,
+                PhoneNumber = client.PhoneNumber,
+                Adress = client.Adress,
+            }, _dbConnector.dbTransaction);
+        }
+        public async Task DeleteAsync(string clientId)
+        {
+            string sql = $"DELETE FROM [dbo].[Client] WHERE id = @id";
+
+            await _dbConnector.dbConnection.ExecuteAsync(sql, new { Id = clientId }, _dbConnector.dbTransaction);
         }
 
         public async Task<bool> ExistsByIdAsync(string clientId)
@@ -51,7 +90,7 @@ namespace Order.Infra.Repositories
         {
             string sql = $"{baseSql} AND Id = @Id";
 
-            var clients = await _dbConnector.dbConnection.QueryAsync<ClientModel>(sql, new { Id = clientId}, _dbConnector.dbTransaction);
+            var clients = await _dbConnector.dbConnection.QueryAsync<ClientModel>(sql, new { Id = clientId }, _dbConnector.dbTransaction);
 
             return clients.FirstOrDefault();
         }
@@ -65,15 +104,10 @@ namespace Order.Infra.Repositories
 
             if (string.IsNullOrWhiteSpace(name))
                 sql += "AND Name like @Name";
-            
-            var clients = await _dbConnector.dbConnection.QueryAsync<ClientModel>(sql,new { Id = clientId, Name = "%" + name + "%" }, _dbConnector.dbTransaction);
+
+            var clients = await _dbConnector.dbConnection.QueryAsync<ClientModel>(sql, new { Id = clientId, Name = "%" + name + "%" }, _dbConnector.dbTransaction);
 
             return clients.ToList();
-        }
-
-        public Task UpdateAsync(ClientModel client)
-        {
-            throw new NotImplementedException();
         }
     }
 }
