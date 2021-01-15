@@ -9,7 +9,6 @@ namespace Order.Domain.Interfaces.Repositories
         Task CreateAsync(OrderModel order);
         Task CreateItemAsync(OrderItemModel item);
         Task UpdateAsync(OrderModel order);
-        Task UpdateItemAsync(OrderItemModel item);
         Task DeleteAsync(string orderId);
         Task DeleteItemAsync(string itemId);
         Task<OrderModel> GetByIdAsync(string orderId);

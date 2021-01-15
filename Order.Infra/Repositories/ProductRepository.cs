@@ -2,7 +2,6 @@
 using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Repositories.DataConnector;
 using Order.Domain.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,14 +24,36 @@ namespace Order.Infra.Repositories
                                       ,[CreatedAt]
                                   FROM[dbo].[Product]
                                   WHERE 1 = 1 ";
-        public Task CreateAsync(ProductModel Product)
+        public async Task CreateAsync(ProductModel Product)
         {
-            throw new NotImplementedException();
+            string sql = @"INSERT INTO [dbo].[Product]
+                                ([Id]
+                                ,[Description]
+                                ,[SellValue]
+                                ,[Stock]
+                                ,[CreatedAt])
+                          VALUES
+                                (@Id
+                                ,@Description
+                                ,@SellValue
+                                ,@Stock
+                                ,@CreatedAt)";
+
+            await _dbConnector.dbConnection.ExecuteAsync(sql, new
+            {
+                Id = Product.Id,
+                Description = Product.Description,
+                SellValue = Product.SellValue,
+                Stock = Product.Stock,
+                CreatedAt = Product.CreatedAt,
+            }, _dbConnector.dbTransaction);
         }
 
-        public Task DeleteAsync(string ProductId)
+        public async Task DeleteAsync(string ProductId)
         {
-            throw new NotImplementedException();
+            string sql = $"DELETE FROM [dbo].[Product] WHERE id = @id";
+
+            await _dbConnector.dbConnection.ExecuteAsync(sql, new { Id = ProductId }, _dbConnector.dbTransaction);
         }
 
         public async Task<bool> ExistsByIdAsync(string ProductId)
@@ -68,9 +89,21 @@ namespace Order.Infra.Repositories
             return Products.ToList();
         }
 
-        public Task UpdateAsync(ProductModel Product)
+        public async Task UpdateAsync(ProductModel Product)
         {
-            throw new NotImplementedException();
+            string sql = @"UPDATE [dbo].[Product]
+                               SET [Description] = @Description
+                                  ,[SellValue] = @SellValue
+                                  ,[Stock] = @Stock
+                           WHERE Id = @Id";
+
+            await _dbConnector.dbConnection.ExecuteAsync(sql, new
+            {
+                Id = Product.Id,
+                Description = Product.Description,
+                SellValue = Product.SellValue,
+                Stock = Product.Stock
+            }, _dbConnector.dbTransaction);
         }
     }
 }

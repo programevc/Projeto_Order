@@ -76,7 +76,6 @@ namespace Order.Infra.Repositories
 
             await _dbConnector.dbConnection.ExecuteAsync(sql, new { Id = clientId }, _dbConnector.dbTransaction);
         }
-
         public async Task<bool> ExistsByIdAsync(string clientId)
         {
             string sql = $"SELECT 1 FROM Client WHERE Id = @Id ";
@@ -85,7 +84,6 @@ namespace Order.Infra.Repositories
 
             return clients.FirstOrDefault();
         }
-
         public async Task<ClientModel> GetByIdAsync(string clientId)
         {
             string sql = $"{baseSql} AND Id = @Id";
@@ -94,7 +92,6 @@ namespace Order.Infra.Repositories
 
             return clients.FirstOrDefault();
         }
-
         public async Task<List<ClientModel>> ListByFilterAsync(string clientId = null, string name = null)
         {
             string sql = $"{baseSql} ";
