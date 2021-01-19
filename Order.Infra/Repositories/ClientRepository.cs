@@ -22,7 +22,7 @@ namespace Order.Infra.Repositories
                                       ,[PhoneNumber]
                                       ,[Adress]
                                       ,[CreatedAt]
-                                  FROM[dbo].[Client]
+                                  FROM [dbo].[Client]
                                   WHERE 1 = 1 ";
         public async Task CreateAsync(ClientModel client)
         {
@@ -96,10 +96,10 @@ namespace Order.Infra.Repositories
         {
             string sql = $"{baseSql} ";
 
-            if (string.IsNullOrWhiteSpace(clientId))
+            if (!string.IsNullOrWhiteSpace(clientId))
                 sql += "AND Id = @Id";
 
-            if (string.IsNullOrWhiteSpace(name))
+            if (!string.IsNullOrWhiteSpace(name))
                 sql += "AND Name like @Name";
 
             var clients = await _dbConnector.dbConnection.QueryAsync<ClientModel>(sql, new { Id = clientId, Name = "%" + name + "%" }, _dbConnector.dbTransaction);

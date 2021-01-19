@@ -1,6 +1,5 @@
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Api.exe
 C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.Api.csprojAssemblyReference.cache
 C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.Api.AssemblyInfoInputs.cache
@@ -26,3 +25,14 @@ C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\FluentValid
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.Api.csproj.CoreCompileInputs.cache
 C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Dapper.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Dapper.Contrib.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Infra.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Infra.pdb
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\scopedcss\bundle\Order.Api.styles.css
