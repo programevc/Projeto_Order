@@ -29,6 +29,23 @@ namespace Order.Application.Applications
             return await _clientService.CreateAsync(clientModel);
         }
 
+        public async Task<Response> DeleteAsync(string clientId)
+        {
+            return await _clientService.DeleteAsync(clientId);
+        }
+
+        public async Task<Response<ClientResponse>> GetByIdAsync(string clientId)
+        {
+            Response<ClientModel> client = await _clientService.GetByIdAsync(clientId);
+
+            if (client.Report.Any())
+                return Response.Unprocessable<ClientResponse>(client.Report);
+
+            var response = _mapper.Map<ClientResponse>(client.Data);
+
+            return Response.OK(response);
+        }
+
         public async Task<Response<List<ClientResponse>>> ListByFilterAsync(string clientId, string name)
         {
             Response<List<ClientModel>> client = await _clientService.ListByFiltersAsync(clientId, name);
@@ -39,6 +56,13 @@ namespace Order.Application.Applications
             var response = _mapper.Map<List<ClientResponse>>(client.Data);
 
             return Response.OK(response);
+        }
+
+        public async Task<Response> UpdateAsync(UpdateClientRequest request)
+        {
+            var clientModel = _mapper.Map<ClientModel>(request);
+
+            return await _clientService.UpdateAsync(clientModel);
         }
     }
 }

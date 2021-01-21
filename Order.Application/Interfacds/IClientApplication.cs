@@ -10,5 +10,8 @@ namespace Order.Application.Interfacds
     {
         Task<Response> CreateAsync(CreateClientRequest client);
         Task<Response<List<ClientResponse>>> ListByFilterAsync(string clientId, string name);
+        Task<Response<ClientResponse>> GetByIdAsync(string clientId);
+        Task<Response> UpdateAsync(UpdateClientRequest request);
+        Task<Response> DeleteAsync(string clientId);
     }
 }

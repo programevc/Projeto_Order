@@ -15,6 +15,7 @@ namespace Order.Application.Mapper
         private void ClientMap()
         {
             CreateMap<CreateClientRequest, ClientModel>();
+            CreateMap<UpdateClientRequest, ClientModel>();
 
             CreateMap<ClientModel, ClientResponse>();
 

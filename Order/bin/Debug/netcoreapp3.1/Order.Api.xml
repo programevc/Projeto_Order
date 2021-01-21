@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Order.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Order.Api.Controllers.ClientController.Get(System.String,System.String)">
+            <summary>
+            Get all clients 
+            </summary>
+            <param name="clientid"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

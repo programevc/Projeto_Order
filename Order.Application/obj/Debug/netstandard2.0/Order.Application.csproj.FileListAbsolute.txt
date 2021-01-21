@@ -10,3 +10,4 @@ C:\Users\Wellyngton\source\repos\Order\Order.Application\obj\Debug\netstandard2.
 C:\Users\Wellyngton\source\repos\Order\Order.Application\obj\Debug\netstandard2.0\Order.Application.dll
 C:\Users\Wellyngton\source\repos\Order\Order.Application\obj\Debug\netstandard2.0\Order.Application.pdb
 C:\Users\Wellyngton\source\repos\Order\Order.Application\obj\Debug\netstandard2.0\Order.Application.csproj.CoreCompileInputs.cache
+C:\Users\Wellyngton\source\repos\Order\Order.Application\bin\Debug\netstandard2.0\Order.Application.xml

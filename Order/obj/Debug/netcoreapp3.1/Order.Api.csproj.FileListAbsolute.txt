@@ -36,3 +36,10 @@ C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\runtimes\wi
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Infra.dll
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Infra.pdb
 C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\scopedcss\bundle\Order.Api.styles.css
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Api.xml
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Application.xml
+C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
