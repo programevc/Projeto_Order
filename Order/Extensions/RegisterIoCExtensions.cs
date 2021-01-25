@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Order.Application.Applications;
 using Order.Application.Interfacds;
+using Order.Domain.Common;
 using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Services;
@@ -13,10 +14,13 @@ namespace Order.Api.Extensions
         public static void RegisterIoC(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ITimeProvider, TimeProvider>();
+            services.AddScoped<IGenerators, Generators>();
 
             services.AddScoped<IClientApplication, ClientApplication>();
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
+
         }
     }
 }

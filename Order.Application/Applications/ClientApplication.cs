@@ -5,6 +5,7 @@ using Order.Application.Interfacds;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
 using Order.Domain.Validations.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,9 +25,18 @@ namespace Order.Application.Applications
 
         public async Task<Response> CreateAsync(CreateClientRequest client)
         {
-            var clientModel = _mapper.Map<ClientModel>(client);
+            try
+            {
+                var clientModel = _mapper.Map<ClientModel>(client);
 
-            return await _clientService.CreateAsync(clientModel);
+                return await _clientService.CreateAsync(clientModel);
+            }
+            catch (Exception ex)
+            {
+                var response = Report.Create(ex.Message);
+
+                return Response.Unprocessable(response);
+            }
         }
 
         public async Task<Response> DeleteAsync(string clientId)

@@ -1,8 +1,10 @@
-﻿using Order.Domain.Interfaces.Repositories;
+﻿using Order.Domain.Common;
+using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
 using Order.Domain.Validations;
 using Order.Domain.Validations.Base;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,9 +13,15 @@ namespace Order.Domain.Services
     public class ClientService : IClientService
     {
         private readonly IClientRepository _clientRepository;
-        public ClientService(IClientRepository clientRepository)
+        private readonly ITimeProvider _timeProvider;
+        private readonly IGenerators _generators;
+        public ClientService(IClientRepository clientRepository, 
+                             ITimeProvider timeProvider, 
+                             IGenerators generators)
         {
             _clientRepository = clientRepository;
+            _timeProvider = timeProvider;
+            _generators = generators;
         }
 
         public async Task<Response> CreateAsync(ClientModel client)
@@ -25,6 +33,9 @@ namespace Order.Domain.Services
 
             if (errors.Report.Count > 0)
                 return errors;
+
+            client.Id = _generators.Generate();
+            client.CreatedAt = _timeProvider.utcDateTime();
 
             await _clientRepository.CreateAsync(client);
 
