@@ -19,11 +19,15 @@ namespace Order.Api.Controllers
             _UserApplication = UserApplication;
         }
 
-        // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult> Get([FromQuery] string userId, [FromQuery] string name)
         {
-            return new string[] { "value1", "value2" };
+            var response = await _UserApplication.ListByFilterAsync(userId, name);
+
+            if (response.Report.Any())
+                return UnprocessableEntity(response.Report);
+
+            return Ok(response);
         }
 
         // GET api/<UserController>/5

@@ -1,6 +1,5 @@
 ﻿using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Repositories.DataConnector;
-using System;
 
 namespace Order.Infra.Repositories
 {

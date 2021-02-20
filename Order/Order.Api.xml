@@ -12,5 +12,13 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="M:Order.Api.Controllers.ProductController.Get(System.String,System.String)">
+            <summary>
+            Get all products
+            </summary>
+            <param name="clientid"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

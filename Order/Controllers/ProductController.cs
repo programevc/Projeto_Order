@@ -19,11 +19,21 @@ namespace Order.Api.Controllers
             _ProductApplication = ProductApplication;
         }
 
-        // GET: api/<ProductController>
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <param name="clientid"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult> Get([FromQuery] string productId, [FromQuery] string description)
         {
-            return new string[] { "value1", "value2" };
+            var response = await _ProductApplication.ListByFilterAsync(productId, description);
+
+            if (response.Report.Any())
+                return UnprocessableEntity(response.Report);
+
+            return Ok(response);
         }
 
         // GET api/<ProductController>/5

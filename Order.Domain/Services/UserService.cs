@@ -1,4 +1,5 @@
-﻿using Order.Domain.Interfaces.Repositories;
+﻿using Order.Domain.Common;
+using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
 using Order.Domain.Validations;
@@ -12,10 +13,15 @@ namespace Order.Domain.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _UserRepository;
-        public UserService(IUserRepository UserRepository)
+        private readonly ITimeProvider _timeProvider;
+        private readonly IGenerators _generators;
+        public UserService(IUserRepository UserRepository,
+                           ITimeProvider timeProvider,
+                           IGenerators generators)
         {
             _UserRepository = UserRepository;
-
+            _timeProvider = timeProvider;
+            _generators = generators;
         }
         public Task<Response<bool>> AutheticationAsync(UserModel user)
         {
@@ -31,6 +37,9 @@ namespace Order.Domain.Services
 
             if (errors.Report.Count > 0)
                 return errors;
+
+            user.Id = _generators.Generate();
+            user.CreatedAt = _timeProvider.utcDateTime();
 
             await _UserRepository.CreateAsync(user);
 

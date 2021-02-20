@@ -17,11 +17,10 @@ namespace Order.Infra.Repositories
         }
 
         const string baseSql = @"SELECT [Id]
-                                      ,[Name]
-                                      ,[Email]
-                                      ,[PhoneNumber]
-                                      ,[Adress]
-                                      ,[CreatedAt]
+                                        ,[Description]
+                                        ,[SellValue]
+                                        ,[Stock]
+                                        ,[CreatedAt]
                                   FROM[dbo].[Product]
                                   WHERE 1 = 1 ";
         public async Task CreateAsync(ProductModel Product)
@@ -78,11 +77,11 @@ namespace Order.Infra.Repositories
         {
             string sql = $"{baseSql} ";
 
-            if (string.IsNullOrWhiteSpace(ProductId))
+            if (!string.IsNullOrWhiteSpace(ProductId))
                 sql += "AND Id = @Id";
 
-            if (string.IsNullOrWhiteSpace(name))
-                sql += "AND Name like @Name";
+            if (!string.IsNullOrWhiteSpace(name))
+                sql += "AND Description like @Name";
             
             var Products = await _dbConnector.dbConnection.QueryAsync<ProductModel>(sql,new { Id = ProductId, Name = "%" + name + "%" }, _dbConnector.dbTransaction);
 

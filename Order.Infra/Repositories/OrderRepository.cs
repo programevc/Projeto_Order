@@ -135,13 +135,13 @@ namespace Order.Infra.Repositories
         {
             string sql = $"{baseSql} ";
 
-            if (string.IsNullOrWhiteSpace(orderId))
+            if (!string.IsNullOrWhiteSpace(orderId))
                 sql += "AND o.Id = @OrderId";
 
-            if (string.IsNullOrWhiteSpace(clientId))
+            if (!string.IsNullOrWhiteSpace(clientId))
                 sql += "AND o.clientId = @ClientId";
 
-            if (string.IsNullOrWhiteSpace(userId))
+            if (!string.IsNullOrWhiteSpace(userId))
                 sql += "AND o.userId = @UserId";
 
             var order = await _dbConnector.dbConnection.QueryAsync<OrderModel, ClientModel, UserModel, OrderModel>(

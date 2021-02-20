@@ -14,10 +14,4 @@
     <ProjectReference Include="..\Order.Domain\Order.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataContract\Response\Order\" />
-    <Folder Include="DataContract\Response\Product\" />
-    <Folder Include="DataContract\Response\User\" />
-  </ItemGroup>
-
 </Project>

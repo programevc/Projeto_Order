@@ -1,4 +1,5 @@
-﻿using Order.Domain.Interfaces.Repositories;
+﻿using Order.Domain.Common;
+using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
 using Order.Domain.Validations;
@@ -12,10 +13,16 @@ namespace Order.Domain.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _OrderRepository;
-        public OrderService(IOrderRepository OrderRepository)
+        private readonly ITimeProvider _timeProvider;
+        private readonly IGenerators _generators;
+
+        public OrderService(IOrderRepository OrderRepository,
+                            ITimeProvider timeProvider,
+                            IGenerators generators)
         {
             _OrderRepository = OrderRepository;
-
+            _timeProvider = timeProvider;
+            _generators = generators;
         }
 
         public async Task<Response> CreateAsync(OrderModel order)
@@ -27,6 +34,16 @@ namespace Order.Domain.Services
 
             if (errors.Report.Count > 0)
                 return errors;
+
+            order.Id = _generators.Generate();
+            order.CreatedAt = _timeProvider.utcDateTime();
+
+            foreach (var item in order.Items)
+            {
+                item.Order = order;
+                item.Id = _generators.Generate();
+                item.CreatedAt = _timeProvider.utcDateTime();
+            }
 
             await _OrderRepository.CreateAsync(order);
 
@@ -82,7 +99,7 @@ namespace Order.Domain.Services
                 }
             }
 
-            var data = await _OrderRepository.ListByFilterAsync(orderId,clientId,userId);
+            var data = await _OrderRepository.ListByFilterAsync(orderId, clientId, userId);
             response.Data = data;
 
             return response;

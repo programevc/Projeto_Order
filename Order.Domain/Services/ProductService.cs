@@ -1,4 +1,5 @@
-﻿using Order.Domain.Interfaces.Repositories;
+﻿using Order.Domain.Common;
+using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
 using Order.Domain.Validations;
@@ -11,10 +12,15 @@ namespace Order.Domain.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-        public ProductService(IProductRepository productRepository)
+        private readonly ITimeProvider _timeProvider;
+        private readonly IGenerators _generators;
+        public ProductService(IProductRepository productRepository, 
+                              ITimeProvider timeProvider, 
+                              IGenerators generators)
         {
             _productRepository = productRepository;
-
+            _timeProvider = timeProvider;
+            _generators = generators;
         }
         public async Task<Response> CreateAsync(ProductModel product)
         {
@@ -26,6 +32,8 @@ namespace Order.Domain.Services
             if (errors.Report.Count > 0)
                 return errors;
 
+            product.Id = _generators.Generate();
+            product.CreatedAt = _timeProvider.utcDateTime();
             await _productRepository.CreateAsync(product);
 
             return response;

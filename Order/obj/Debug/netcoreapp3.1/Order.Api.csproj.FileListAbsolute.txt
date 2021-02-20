@@ -43,3 +43,4 @@ C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Swashbuckle
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Order.Application.xml
 C:\Users\Wellyngton\source\repos\Order\Order\obj\Debug\netcoreapp3.1\Order.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Wellyngton\source\repos\Order\Order\bin\Debug\netcoreapp3.1\BCrypt.Net-Core.dll

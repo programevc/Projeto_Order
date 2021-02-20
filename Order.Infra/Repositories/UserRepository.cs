@@ -98,10 +98,10 @@ namespace Order.Infra.Repositories
         {
             string sql = $"{baseSql} ";
 
-            if (string.IsNullOrWhiteSpace(login))
+            if (!string.IsNullOrWhiteSpace(login))
                 sql += "AND login = @Login";
 
-            if (string.IsNullOrWhiteSpace(name))
+            if (!string.IsNullOrWhiteSpace(name))
                 sql += "AND Name like @Name";
 
             var users = await _dbConnector.dbConnection.QueryAsync<UserModel>(sql, new { Login = login, Name = "%" + name + "%" }, _dbConnector.dbTransaction);

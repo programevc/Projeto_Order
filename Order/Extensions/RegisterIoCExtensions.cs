@@ -21,6 +21,19 @@ namespace Order.Api.Extensions
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
 
+            services.AddScoped<IOrderApplication, OrderApplication>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
+            services.AddScoped<IUserApplication, UserApplication>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IProductApplication, ProductApplication>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<ISecurityService, SecurityService>();
         }
     }
 }
