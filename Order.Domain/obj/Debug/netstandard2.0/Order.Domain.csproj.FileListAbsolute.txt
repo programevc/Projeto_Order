@@ -5,5 +5,4 @@ C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Ord
 C:\Users\Wellyngton\source\repos\Order\Order.Domain\bin\Debug\netstandard2.0\Order.Domain.pdb
 C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.dll
 C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.pdb
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.csprojAssemblyReference.cache
 C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.csproj.CoreCompileInputs.cache

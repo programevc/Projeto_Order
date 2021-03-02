@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Order.Application.DataContract.Request.User;
 using Order.Application.Interfacds;
@@ -10,6 +11,7 @@ namespace Order.Api.Controllers
 {
     [Route("api/user")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserApplication _UserApplication;
@@ -39,6 +41,7 @@ namespace Order.Api.Controllers
 
         // POST api/<UserController>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> Post([FromBody] CreateUserRequest request)
         {
             var response = await _UserApplication.CreateAsync(request);
@@ -59,6 +62,19 @@ namespace Order.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        // DELETE api/<UserController>/5
+        [HttpPost("auth")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Auth([FromBody] AuthRequest request)
+        {
+            var response = await _UserApplication.AuthAsync(request);
+
+            if (response.Report.Any())
+                return UnprocessableEntity(response.Report);
+
+            return Ok(response);
         }
     }
 }

@@ -15,17 +15,22 @@ namespace Order.Domain.Services
         private readonly IUserRepository _UserRepository;
         private readonly ITimeProvider _timeProvider;
         private readonly IGenerators _generators;
+        private readonly ISecurityService _securityService;
+
         public UserService(IUserRepository UserRepository,
                            ITimeProvider timeProvider,
-                           IGenerators generators)
+                           IGenerators generators, 
+                           ISecurityService securityService)
         {
             _UserRepository = UserRepository;
             _timeProvider = timeProvider;
             _generators = generators;
+            _securityService = securityService;
         }
-        public Task<Response<bool>> AutheticationAsync(UserModel user)
+
+        public async Task<Response<bool>> AutheticationAsync(string password, UserModel user)
         {
-            throw new NotImplementedException();
+            return await _securityService.VerifyPassword(password, user);
         }
 
         public async Task<Response> CreateAsync(UserModel user)
@@ -76,6 +81,23 @@ namespace Order.Domain.Services
             }
 
             var data = await _UserRepository.GetByIdAsync(userId);
+            response.Data = data;
+            return response;
+        }
+
+        public async Task<Response<UserModel>> GetByLoginAsync(string login)
+        {
+            var response = new Response<UserModel>();
+
+            var exists = await _UserRepository.ExistsByLoginAsync(login);
+
+            if (!exists)
+            {
+                response.Report.Add(Report.Create($"User {login} not exists!"));
+                return response;
+            }
+
+            var data = await _UserRepository.GetByLoginAsync(login);
             response.Data = data;
             return response;
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Order.Application.DataContract.Request.Client;
 using Order.Application.Interfacds;
@@ -9,6 +10,7 @@ namespace Order.Api.Controllers
 {
     [Route("api/client")]
     [ApiController]
+    [Authorize]
     public class ClientController : ControllerBase
     {
         private readonly IClientApplication _clientApplication;

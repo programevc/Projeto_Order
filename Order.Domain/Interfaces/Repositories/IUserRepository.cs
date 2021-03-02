@@ -10,6 +10,7 @@ namespace Order.Domain.Interfaces.Repositories
         Task UpdateAsync(UserModel user);
         Task DeleteAsync(string userId);
         Task<UserModel> GetByIdAsync(string userId);
+        Task<UserModel> GetByLoginAsync(string login);
         Task<List<UserModel>> ListByFilterAsync(string userId = null, string name = null);
         Task<bool> ExistsByIdAsync(string userId);
         Task<bool> ExistsByLoginAsync(string login);

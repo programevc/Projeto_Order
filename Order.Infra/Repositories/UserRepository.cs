@@ -80,8 +80,8 @@ namespace Order.Infra.Repositories
         }
         public async Task<bool> ExistsByLoginAsync(string login)
         {
-            string sql = $"SELECT 1 FROM User WHERE Login = @Login ";
-
+            string sql = $"SELECT 1 FROM [User] WHERE Login = @Login ";
+                
             var users = await _dbConnector.dbConnection.QueryAsync<bool>(sql, new { Login = login }, _dbConnector.dbTransaction);
 
             return users.FirstOrDefault();
@@ -107,6 +107,15 @@ namespace Order.Infra.Repositories
             var users = await _dbConnector.dbConnection.QueryAsync<UserModel>(sql, new { Login = login, Name = "%" + name + "%" }, _dbConnector.dbTransaction);
 
             return users.ToList();
+        }
+
+        public async Task<UserModel> GetByLoginAsync(string login)
+        {
+            string sql = $"{baseSql} AND Login = @Login";
+
+            var users = await _dbConnector.dbConnection.QueryAsync<UserModel>(sql, new { Login = login }, _dbConnector.dbTransaction);
+
+            return users.FirstOrDefault();
         }
     }
 }

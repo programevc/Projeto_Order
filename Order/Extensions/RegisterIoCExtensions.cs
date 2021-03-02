@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Order.Application.Applications;
 using Order.Application.Interfacds;
+using Order.Application.Interfacds.Security;
+using Order.Application.Security;
 using Order.Domain.Common;
 using Order.Domain.Interfaces.Repositories;
 using Order.Domain.Interfaces.Services;
@@ -34,6 +36,8 @@ namespace Order.Api.Extensions
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<ISecurityService, SecurityService>();
+            services.AddScoped<ITokenManager, TokenManager>();
+            services.AddScoped<ITokenManager, TokenManager>();
         }
     }
 }

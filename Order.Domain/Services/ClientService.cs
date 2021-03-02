@@ -4,7 +4,6 @@ using Order.Domain.Interfaces.Services;
 using Order.Domain.Models;
 using Order.Domain.Validations;
 using Order.Domain.Validations.Base;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

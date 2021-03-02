@@ -1,9 +1,9 @@
-﻿using Order.Domain.Models;
+﻿using Order.Domain.Interfaces.Services;
+using Order.Domain.Models;
 using Order.Domain.Validations.Base;
-using System;
 using System.Threading.Tasks;
 
-namespace Order.Domain.Interfaces.Services
+namespace Order.Domain.Services
 {
     public class SecurityService : ISecurityService
     {

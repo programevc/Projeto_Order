@@ -1,22 +1,18 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Tokens;
 using Order.Api.Extensions;
-using Order.Application.Applications;
-using Order.Application.Interfacds;
 using Order.Application.Mapper;
-using Order.Domain.Interfaces.Repositories;
+using Order.Application.Models;
 using Order.Domain.Interfaces.Repositories.DataConnector;
-using Order.Domain.Interfaces.Services;
-using Order.Domain.Services;
 using Order.Infra.DataConnector;
-using Order.Infra.Repositories;
-using System;
-using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Order
 {
@@ -34,6 +30,48 @@ namespace Order
         {
             services.AddAutoMapper(typeof(Core));
             services.AddControllers();
+
+            var authSettingsSection = Configuration.GetSection("AuthSettings");
+            services.Configure<AuthSettings>(authSettingsSection);
+
+            var authSettings = authSettingsSection.Get<AuthSettings>();
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSettings.Secret));
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddPolicyScheme("programevc", "Authorization Bearer or AccessToken", options =>
+                    {
+                        options.ForwardDefaultSelector = context =>
+                        {
+                            if (context.Request.Headers["Access-Token"].Any())
+                            {
+                                return "Access-Token";
+                            }
+
+                            return JwtBearerDefaults.AuthenticationScheme;
+                        };
+                    }).AddJwtBearer(x =>
+                    {
+                        x.TokenValidationParameters = new TokenValidationParameters()
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = "programevc",
+
+                            ValidateAudience = false,
+
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = key,
+
+                            // Verify if token is valid
+                            ValidateLifetime = true,
+                            RequireExpirationTime = true,
+
+                        };
+
+                    });
+
 
             string connectionString = Configuration.GetConnectionString("default");
             services.AddScoped<IDbConnector>(db => new SqlConnector(connectionString));
@@ -63,6 +101,7 @@ namespace Order
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
