@@ -23,14 +23,11 @@ namespace Order.Infra.Repositories
 
         public IUserRepository UserRepository => _userRepository ?? (_userRepository = new UserRepository(dbConnector));
 
-        public IDbConnector dbConnector { get ; }
+        public IDbConnector dbConnector { get; }
 
         public void BeginTransaction()
         {
-           if(dbConnector.dbConnection.State == System.Data.ConnectionState.Open)
-            {
-                dbConnector.dbTransaction = dbConnector.dbConnection.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
-            }
+            dbConnector.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted);
         }
 
         public void CommitTransaction()

@@ -16,6 +16,21 @@ namespace Order.Infra.DataConnector
 
         public IDbTransaction dbTransaction { get; set; }
 
+        public IDbTransaction BeginTransaction(IsolationLevel isolation)
+        {
+            if (dbTransaction != null)
+            {
+                return dbTransaction;
+            }
+
+            if (dbConnection.State == ConnectionState.Closed)
+            {
+                dbConnection.Open();
+            }
+
+            return (dbTransaction = dbConnection.BeginTransaction(isolation));
+        }
+
         public void Dispose()
         {
             dbConnection?.Dispose();

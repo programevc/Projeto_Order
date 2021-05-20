@@ -11,7 +11,7 @@ namespace Order.Api.Controllers
 {
     [Route("api/order")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class OrderController : ControllerBase
     {
         private readonly IOrderApplication _OrderApplication;
@@ -34,9 +34,14 @@ namespace Order.Api.Controllers
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult> GetById(string id)
         {
-            return "value";
+            var response = await _OrderApplication.GetByIdAsync(id);
+
+            if (response.Report.Any())
+                return UnprocessableEntity(response.Report);
+
+            return Ok(response);
         }
 
         // POST api/<OrderController>

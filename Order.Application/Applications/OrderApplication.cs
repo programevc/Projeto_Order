@@ -39,6 +39,18 @@ namespace Order.Application.Applications
             }
         }
 
+        public async Task<Response<OrderResponse>> GetByIdAsync(string orderId)
+        {
+            Response<OrderModel> user = await _OrderService.GetByIdAsync(orderId);
+
+            if (user.Report.Any())
+                return Response.Unprocessable<OrderResponse>(user.Report);
+
+            var response = _mapper.Map<OrderResponse>(user.Data);
+
+            return Response.OK(response);
+        }
+
         public async Task<Response<List<OrderResponse>>> ListByFilterAsync(string orderId = null, string clientId = null, string userId = null)
         {
             Response<List<OrderModel>> user = await _OrderService.ListByFiltersAsync(orderId, clientId, userId);

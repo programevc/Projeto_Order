@@ -8,5 +8,6 @@ namespace Order.Domain.Interfaces.Repositories.DataConnector
         IDbConnection dbConnection { get;  }
         IDbTransaction dbTransaction { get; set; }
 
+        IDbTransaction BeginTransaction(IsolationLevel isolation);
     }
 }

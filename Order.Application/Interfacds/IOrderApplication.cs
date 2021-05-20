@@ -10,5 +10,6 @@ namespace Order.Application.Interfacds
     {
         Task<Response> CreateAsync(CreateOrderRequest Order);
         Task<Response<List<OrderResponse>>> ListByFilterAsync(string orderId = null, string clientId = null, string userId = null);
+        Task<Response<OrderResponse>> GetByIdAsync(string orderId);
     }
 }

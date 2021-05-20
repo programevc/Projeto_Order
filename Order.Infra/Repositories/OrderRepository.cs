@@ -105,7 +105,7 @@ namespace Order.Infra.Repositories
 
         public async Task<bool> ExistsByIdAsync(string orderId)
         {
-            string sql = $"SELECT 1 FROM Order WHERE Id = @Id ";
+            string sql = $"SELECT 1 FROM [Order] WHERE Id = @Id ";
 
             var order = await _dbConnector.dbConnection.QueryAsync<bool>(sql, new { Id = orderId }, _dbConnector.dbTransaction);
 
@@ -114,7 +114,7 @@ namespace Order.Infra.Repositories
 
         public async Task<OrderModel> GetByIdAsync(string orderId)
         {
-            string sql = $"{baseSql} AND Id = @Id";
+            string sql = $"{baseSql} AND o.Id = @Id";
 
             var order = await _dbConnector.dbConnection.QueryAsync<OrderModel, ClientModel, UserModel, OrderModel>(
                 sql: sql,

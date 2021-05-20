@@ -12,17 +12,16 @@ namespace Order.Domain.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IOrderRepository _OrderRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ITimeProvider _timeProvider;
         private readonly IGenerators _generators;
 
-        public OrderService(IOrderRepository OrderRepository,
-                            ITimeProvider timeProvider,
-                            IGenerators generators)
+        public OrderService(ITimeProvider timeProvider,
+                            IGenerators generators, IUnitOfWork unitOfWork)
         {
-            _OrderRepository = OrderRepository;
             _timeProvider = timeProvider;
             _generators = generators;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Response> CreateAsync(OrderModel order)
@@ -45,7 +44,7 @@ namespace Order.Domain.Services
                 item.CreatedAt = _timeProvider.utcDateTime();
             }
 
-            await _OrderRepository.CreateAsync(order);
+            await _unitOfWork.OrderRepository.CreateAsync(order);
 
             return response;
         }
@@ -54,7 +53,7 @@ namespace Order.Domain.Services
         {
             var response = new Response();
 
-            var exists = await _OrderRepository.ExistsByIdAsync(orderId);
+            var exists = await _unitOfWork.OrderRepository.ExistsByIdAsync(orderId);
 
             if (!exists)
             {
@@ -62,7 +61,7 @@ namespace Order.Domain.Services
                 return response;
             }
 
-            await _OrderRepository.DeleteAsync(orderId);
+            await _unitOfWork.OrderRepository.DeleteAsync(orderId);
 
             return response;
         }
@@ -70,18 +69,31 @@ namespace Order.Domain.Services
         public async Task<Response<OrderModel>> GetByIdAsync(string orderId)
         {
             var response = new Response<OrderModel>();
+            _unitOfWork.BeginTransaction();
 
-            var exists = await _OrderRepository.ExistsByIdAsync(orderId);
-
-            if (!exists)
+            try
             {
-                response.Report.Add(Report.Create($"Order {orderId} not exists!"));
+                var exists = await _unitOfWork.OrderRepository.ExistsByIdAsync(orderId);
+
+                if (!exists)
+                {
+                    response.Report.Add(Report.Create($"Order {orderId} not exists!"));
+                    return response;
+                }
+
+                var data = await _unitOfWork.OrderRepository.GetByIdAsync(orderId);
+                data.Items = await _unitOfWork.OrderRepository.ListItemByOrderIdAsync(orderId);
+
+                _unitOfWork.CommitTransaction();
+
+                response.Data = data;
                 return response;
             }
-
-            var data = await _OrderRepository.GetByIdAsync(orderId);
-            response.Data = data;
-            return response;
+            catch (Exception ex)
+            {
+                _unitOfWork.RollbackTransaction();
+                return response;
+            }
         }
 
         public async Task<Response<List<OrderModel>>> ListByFiltersAsync(string orderId = null, string clientId = null, string userId = null)
@@ -90,7 +102,7 @@ namespace Order.Domain.Services
 
             if (!string.IsNullOrWhiteSpace(orderId))
             {
-                var exists = await _OrderRepository.ExistsByIdAsync(orderId);
+                var exists = await _unitOfWork.OrderRepository.ExistsByIdAsync(orderId);
 
                 if (!exists)
                 {
@@ -99,7 +111,7 @@ namespace Order.Domain.Services
                 }
             }
 
-            var data = await _OrderRepository.ListByFilterAsync(orderId, clientId, userId);
+            var data = await _unitOfWork.OrderRepository.ListByFilterAsync(orderId, clientId, userId);
             response.Data = data;
 
             return response;
@@ -115,7 +127,7 @@ namespace Order.Domain.Services
             if (errors.Report.Count > 0)
                 return errors;
 
-            var exists = await _OrderRepository.ExistsByIdAsync(order.Id);
+            var exists = await _unitOfWork.OrderRepository.ExistsByIdAsync(order.Id);
 
             if (!exists)
             {
@@ -123,7 +135,7 @@ namespace Order.Domain.Services
                 return response;
             }
 
-            await _OrderRepository.UpdateAsync(order);
+            await _unitOfWork.OrderRepository.UpdateAsync(order);
 
             return response;
         }
