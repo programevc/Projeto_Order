@@ -1,9 +1,0 @@
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\bin\Debug\netstandard2.0\Order.Domain.deps.json
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\bin\Debug\netstandard2.0\Order.Domain.dll
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.AssemblyInfoInputs.cache
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.AssemblyInfo.cs
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\bin\Debug\netstandard2.0\Order.Domain.pdb
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.dll
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.pdb
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.csproj.CoreCompileInputs.cache
-C:\Users\Wellyngton\source\repos\Order\Order.Domain\obj\Debug\netstandard2.0\Order.Domain.csprojAssemblyReference.cache
